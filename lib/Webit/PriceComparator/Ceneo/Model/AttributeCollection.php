@@ -2,6 +2,7 @@
 namespace Webit\PriceComparator\Ceneo\Model;
 
 use JMS\Serializer\Annotation as JMS;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * 
@@ -13,8 +14,8 @@ class AttributeCollection
 
     /**
      *
-     * @var array
-     * @JMS\Type("array")
+     * @var ArrayCollection
+     * @JMS\Type("ArrayCollection")
      * @JMS\SerializedName("attrs")
      * @JMS\XmlList(inline="true", entry="a")
      */
@@ -22,10 +23,14 @@ class AttributeCollection
 
     /**
      *
-     * @return array
+     * @return ArrayCollection
      */
     public function getAttributes()
     {
+        if($this->attributes == null) {
+            $this->attributes = new ArrayCollection();
+        }
+        
         return $this->attributes;
     }
 
@@ -34,14 +39,14 @@ class AttributeCollection
      * @param Attribute $attribute
      */
     public function addAttribute(Attribute $attribute) {
-        $this->attributes[] = $attribute;
+        $this->getAttributes()->add($attribute);
     }
     
     /**
      *
-     * @param array $attributes            
+     * @param ArrayCollection $attributes            
      */
-    public function setAttributes(array $attributes)
+    public function setAttributes(ArrayCollection $attributes)
     {
         $this->attributes = $attributes;
     }

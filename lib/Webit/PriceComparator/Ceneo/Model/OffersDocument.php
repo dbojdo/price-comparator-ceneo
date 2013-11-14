@@ -1,6 +1,7 @@
 <?php
 namespace Webit\PriceComparator\Ceneo\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -36,6 +37,14 @@ class OffersDocument
      * @JMS\Type("Webit\PriceComparator\Ceneo\Model\Group")
      */
     protected $group;
+    
+    /**
+     * 
+     * @var ArrayCollection
+     * @JMS\Type("ArrayCollection<Webit\PriceComparator\Ceneo\Model\Offer>")
+     * @JMS\XmlList(inline="true", entry="o")
+     */
+    protected $offers;
     
     /**
      *
@@ -89,4 +98,31 @@ class OffersDocument
 	public function setGroup(Group $group) {
 		$this->group = $group;
 	}
+
+	/**
+	 * @return ArrayCollection
+	 */
+	public function getOffers() {
+	    if($this->offers == null) {
+	        $this->offers = new ArrayCollection();
+	    }
+	    
+		return $this->offers;
+	}
+	
+	/**
+	 * 
+	 * @param Offer $offer
+	 */
+	public function addOffer(Offer $offer) {
+	    $this->getOffers()->add($offer);
+	} 
+	
+	/**
+	 * @param ArrayCollection $offers
+	 */
+	public function setOffers(ArrayCollection $offers) {
+		$this->offers = $offers;
+	}
+	
 }

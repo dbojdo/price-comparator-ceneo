@@ -2,6 +2,7 @@
 namespace Webit\PriceComparator\Ceneo\Model;
 
 use JMS\Serializer\Annotation as JMS;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * 
@@ -47,10 +48,14 @@ class ImageCollection
 
     /**
      *
-     * @return array
+     * @return ArrayCollection
      */
     public function getImages()
     {
+        if($this->images == null) {
+            $this->images = new ArrayCollection();
+        }
+        
         return $this->images;
     }
 
@@ -59,14 +64,14 @@ class ImageCollection
      * @param Image $image
      */
     public function addImage(Image $image) {
-        $this->images[] = $image;
+        $this->getImages()->add($image);
     }
     
     /**
      *
-     * @param array $images            
+     * @param ArrayCollection $images            
      */
-    public function setImages(array $images)
+    public function setImages(ArrayCollection $images)
     {
         $this->images = $images;
     }
