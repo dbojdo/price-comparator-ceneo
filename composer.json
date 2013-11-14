@@ -1,0 +1,29 @@
+{
+	"name" : "webit/price-comparator-ceneo",
+	"description" : "Web-IT Price Comparator Ceneo Library",
+	"type" : "library",
+	"authors" : [{
+			"name" : "Web-IT",
+			"homepage" : "http://www.web-it.eu"
+		}
+	],
+	"keywords" : [
+		"web-it",
+		"ceneo",
+		"price comparator"
+	],
+	"homepage" : "http://www.web-it.eu",
+	"license" : [
+		"Web-IT"
+	],
+	"require" : {
+		"jms/serializer" : ">=0.12@dev",
+		"php" : ">=5.3.2",
+		"symfony/framework-bundle" : "~2.1"
+	},
+	"autoload" : {
+		"psr-0" : {
+			"Webit\\PriceComparator\\Ceneo" : "lib"
+		}
+	}
+}
