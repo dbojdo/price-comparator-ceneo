@@ -25,6 +25,7 @@ class CategoryCollection {
      * @JMS\SerializedName("xmlns:xsd")
      * @JMS\Type("string")
      * @JMS\XmlAttribute
+     * @JMS\Accessor(setter="setCategories")
      */
     protected $xmlnsXsd = 'http://www.w3.org/2001/XMLSchema';
     
@@ -84,5 +85,8 @@ class CategoryCollection {
 	 */
 	public function setCategories(ArrayCollection $categories) {
 		$this->categories = $categories;
+		foreach($this->categories as $cat) {
+		    $cat->setParent($this);
+		}
 	}
 }
