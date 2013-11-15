@@ -18,9 +18,9 @@ class SerializerOfferWriter implements OfferWriterInterface {
      */
     protected $serializer;
     
-    public function __construct($targetDir, SerializerInterface $serializer) {
-        $this->targetDir = $targetDir;
+    public function __construct(SerializerInterface $serializer, $targetDir) {
         $this->serializer = $serializer;
+        $this->targetDir = $targetDir;
     }
     
     /**
