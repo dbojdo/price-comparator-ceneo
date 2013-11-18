@@ -37,6 +37,15 @@ class Group
 
     /**
      *
+     * @var ArrayCollection
+     * @JMS\Type("ArrayCollection<Webit\PriceComparator\Ceneo\Model\Offer>")
+     * @JMS\Accessor(setter="setOffers")
+     * @JMS\XmlList(inline=true, entry="o")
+     */
+    protected $offers;
+    
+    /**
+     *
      * @return string
      */
     public function getName()
@@ -51,5 +60,37 @@ class Group
     public function setName($name)
     {
         $this->name = $name;
+    }
+    
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOffers() {
+        if($this->offers == null) {
+            $this->offers = new ArrayCollection();
+        }
+         
+        return $this->offers;
+    }
+    
+    /**
+     *
+     * @param Offer $offer
+     */
+    public function addOffer(Offer $offer) {
+        if($this->getOffers()->containsKey($offer->getId())) {
+            continue;
+        }
+        $this->getOffers()->add($offer);
+    }
+    
+    /**
+     * @param ArrayCollection $offers
+     */
+    public function setOffers(ArrayCollection $offers) {
+        foreach($offers as $offer) {
+            $this->addOffer($offer);
+        }
     }
 }

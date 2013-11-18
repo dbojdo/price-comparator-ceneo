@@ -34,17 +34,11 @@ class OffersDocument
      * 
      * @var Group
      * @JMS\SerializedName("group")
-     * @JMS\Type("Webit\PriceComparator\Ceneo\Model\Group")
+     * @JMS\Type("ArrayCollection<Webit\PriceComparator\Ceneo\Model\Group>")
+     * @JMS\Accessor(setter="setGroups")
+     * @JMS\XmlList(inline=true, entry="group")
      */
-    protected $group;
-    
-    /**
-     * 
-     * @var ArrayCollection
-     * @JMS\Type("ArrayCollection<Webit\PriceComparator\Ceneo\Model\Offer>")
-     * @JMS\XmlList(inline=true, entry="o")
-     */
-    protected $offers;
+    protected $groups;
     
     /**
      *
@@ -86,43 +80,37 @@ class OffersDocument
 	 * 
 	 * @return Group
 	 */
-	public function getGroup() 
+	public function getGroups() 
 	{
-		return $this->group;
+	    if($this->groups == null) {
+	        $this->groups = new ArrayCollection();
+	    }
+	    
+		return $this->groups;
+	}
+	
+	/**
+	 * 
+	 * @param ArrayCollection $groups
+	 */
+	public function setGroups(ArrayCollection $groups) {
+	    foreach($groups as $group) {
+	        $this->addGroup($group);
+	    }
 	}
 	
 	/**
 	 * 
 	 * @param Group $group
 	 */
-	public function setGroup(Group $group) {
-		$this->group = $group;
-	}
-
-	/**
-	 * @return ArrayCollection
-	 */
-	public function getOffers() {
-	    if($this->offers == null) {
-	        $this->offers = new ArrayCollection();
+	public function addGroup(Group $group) {
+	    if($this->getGroups()->containsKey($group->getName())) {
+	        $cGroup = $this->getGroups()->get($group->getName());
+	        foreach($group->getOffers() as $offer) {
+	            $cGroup->addOffer($offer);
+	        }
+	    } else {
+	        $this->getGroups()->set($group->getName(), $group);
 	    }
-	    
-		return $this->offers;
 	}
-	
-	/**
-	 * 
-	 * @param Offer $offer
-	 */
-	public function addOffer(Offer $offer) {
-	    $this->getOffers()->add($offer);
-	} 
-	
-	/**
-	 * @param ArrayCollection $offers
-	 */
-	public function setOffers(ArrayCollection $offers) {
-		$this->offers = $offers;
-	}
-	
 }
