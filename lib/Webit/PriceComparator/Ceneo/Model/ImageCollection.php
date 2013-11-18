@@ -24,7 +24,7 @@ class ImageCollection
      *
      * @var ArrayCollection
      * @JMS\Type("ArrayCollection<Webit\PriceComparator\Ceneo\Model\Image>")
-     * @JMS\XmlList(inline="true", entry="i")
+     * @JMS\XmlList(inline=true, entry="i")
      */
     protected $images;
 

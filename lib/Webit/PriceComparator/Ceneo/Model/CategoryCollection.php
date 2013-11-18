@@ -33,7 +33,7 @@ class CategoryCollection {
      * 
      * @var ArrayCollection
      * @JMS\Type("ArrayCollection<Webit\PriceComparator\Ceneo\Model\Category>")
-     * @JMS\XmlList(inline="true", entry="Category")
+     * @JMS\XmlList(inline=true, entry="Category")
      */
     protected $categories;
 

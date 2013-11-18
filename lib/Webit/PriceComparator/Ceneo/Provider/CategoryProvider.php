@@ -1,5 +1,5 @@
 <?php
-namespace Webit\PriceComparator\Ceneo\Category;
+namespace Webit\PriceComparator\Ceneo\Provider;
 
 use JMS\Serializer\SerializerInterface;
 use Webit\PriceComparator\Ceneo\Model\Category;

@@ -2,7 +2,7 @@
 namespace Webit\PriceComparator\Ceneo\Model;
 
 use JMS\Serializer\Annotation as JMS;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * 
  * @author dbojdo
@@ -32,6 +32,7 @@ class Category
      * @var ArrayCollection
      * @JMS\Type("ArrayCollection<Webit\PriceComparator\Ceneo\Model\Category>")
      * @JMS\SerializedName("Subcategories")
+     * @JMS\Accessor(setter="setSubcategories")
      */
     protected $subcategories;
 
@@ -96,6 +97,9 @@ class Category
     public function setSubcategories(ArrayCollection $subcategories)
     {
         $this->subcategories = $subcategories;
+        foreach($this->subcategories as $sub) {
+            $sub->setParent($this);
+        }
     }
     
     /**
@@ -121,11 +125,12 @@ class Category
      * @return string
      */
     public function getPath() {
-        $arAncestors = array($this->getName());
+        $arAncestors = array();
         
         $parent = $this;
-        while($parent = $parent->getParent() && $parent->getCeneoId() !== null) {
+        while($parent) {
             $arAncestors[] = $parent->getName();
+            $parent = $parent->getParent();
         }
         
         $arAncestors = array_reverse($arAncestors);

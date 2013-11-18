@@ -42,7 +42,7 @@ class OffersDocument
      * 
      * @var ArrayCollection
      * @JMS\Type("ArrayCollection<Webit\PriceComparator\Ceneo\Model\Offer>")
-     * @JMS\XmlList(inline="true", entry="o")
+     * @JMS\XmlList(inline=true, entry="o")
      */
     protected $offers;
     

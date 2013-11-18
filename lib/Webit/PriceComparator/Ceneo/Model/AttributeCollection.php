@@ -17,7 +17,7 @@ class AttributeCollection
      * @var ArrayCollection
      * @JMS\Type("ArrayCollection")
      * @JMS\SerializedName("attrs")
-     * @JMS\XmlList(inline="true", entry="a")
+     * @JMS\XmlList(inline=true, entry="a")
      */
     protected $attributes;
 
