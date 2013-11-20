@@ -64,10 +64,10 @@ class ImageCollection
      * @param Image $image
      */
     public function addImage(Image $image) {
-        if($this->mainImage == null) {
-            $this->mainImage = $image;
-        } else {
+        if($this->getMainImage()) {
             $this->getImages()->add($image);
+        } else {
+            $this->setMainImage($image);
         }
     }
     
