@@ -4,7 +4,7 @@ namespace Webit\PriceComparator\Ceneo\Model;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * 
+ *
  * @author dbojdo
  * @JMS\XmlRoot("a")
  */
@@ -22,12 +22,18 @@ class Attribute
 
     /**
      *
-     * @var int
+     * @var int 
      * @JMS\Type("integer")
      * @JMS\SerializedName("v")
      * @JMS\XmlAttribute
      */
     protected $variant;
+
+    /**
+     *
+     * @var string @JMS\XmlValue
+     */
+    protected $value;
 
     /**
      *
@@ -58,10 +64,28 @@ class Attribute
 
     /**
      *
-     * @param int $variant
+     * @param int $variant            
      */
     public function setVariant($variant)
     {
         $this->variant = $variant;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     *
+     * @param string $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
     }
 }
