@@ -2,6 +2,7 @@
 namespace Webit\PriceComparator\Ceneo\Model;
 
 use JMS\Serializer\Annotation as JMS;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * 
@@ -31,7 +32,7 @@ class Group
      *
      * @var string
      * @JMS\Type("string")
-     * @JMS\XmlAttribute("name")
+     * @JMS\XmlAttribute
      */
     protected $name;
 
@@ -80,7 +81,7 @@ class Group
      */
     public function addOffer(Offer $offer) {
         if($this->getOffers()->containsKey($offer->getId())) {
-            continue;
+            return null;
         }
         $this->getOffers()->add($offer);
     }

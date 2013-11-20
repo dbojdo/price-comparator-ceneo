@@ -15,7 +15,8 @@ class Image
      *
      * @var string
      * @JMS\Type("string")
-     * @JMS\XmlAttribute("url")
+     * @JMS\SerializedName("url")
+     * @JMS\XmlAttribute
      */
     protected $url;
 

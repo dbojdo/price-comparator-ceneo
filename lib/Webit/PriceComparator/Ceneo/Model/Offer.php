@@ -86,13 +86,14 @@ class Offer
     /**
      *
      * @var Category
+     * @JMS\Groups({"category"})
      */
     protected $category;
 
     /**
      *
      * @var string
-     * @JMS\Type("string")
+     * @JMS\Type("Webit\PriceComparator\Ceneo\Model\CategoryPath")
      * @JMS\SerializedName("cat")
      */
     protected $categoryPath;
@@ -293,13 +294,21 @@ class Offer
 
     /**
      *
-     * @return string
+     * @return CategoryPath
      */
     public function getCategoryPath()
     {
-        return $this->category ? $this->category->getPath() : null;
+        return $this->categoryPath;
     }
 
+    /**
+     * 
+     * @param CategoryPath $path
+     */
+    public function setCategoryPath(CategoryPath $path) {
+        $this->categoryPath = $path;
+    }
+    
     /**
      *
      * @return string
