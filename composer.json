@@ -13,9 +13,7 @@
 		"price comparator"
 	],
 	"homepage" : "http://www.web-it.eu",
-	"license" : [
-		"Web-IT"
-	],
+	"license" : "MIT",
 	"require" : {
 		"doctrine/collections" : ">1.0@dev",
 		"jms/serializer" : ">=0.12@dev",
